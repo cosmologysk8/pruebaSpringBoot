@@ -3,6 +3,7 @@ import com.appprueba.prueba.web.app.models.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -31,13 +32,18 @@ public class IndexController {
 
     @RequestMapping("/listar")
     public String listar(Model model){
+        return "listar";
+    }
+
+    @ModelAttribute("usuarios")
+    public List<Usuario> poblarUsuarios(){
+
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(new Usuario("Adrian", "de la Fuente", "a1999afg@gmail.com"));
         usuarios.add(new Usuario("Andres", "Guzman", "andresguzman@gmail.com"));
         usuarios.add(new Usuario("Pepe", "Villuelas", "pepevilluelas@gmail.com"));
-        model.addAttribute("usuarios", usuarios);
 
-        return "listar";
+        return usuarios;
     }
 
 }
